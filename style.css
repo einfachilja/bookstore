@@ -18,18 +18,25 @@ a {
   color: white;
 }
 
+.max-width-1440 {
+  max-width: 1440px;
+  margin: auto;
+}
+
 header {
   background-color: #4c6bdd;
+  box-shadow: 0 8px 20px #4d6bdd33;
   height: 96px;
-  color: white;
   border-radius: 8px;
+  margin: 12px;
+  font-size: 24px;
+  padding: 16px;
+}
+
+.header-content {
   display: flex;
   align-items: center;
-  gap: 24px;
-  font-size: 24px;
-  box-shadow: 0 8px 20px #4d6bdd33;
-  padding: 16px;
-  margin: 12px;
+  gap: 12px;
 }
 
 .title {
@@ -57,8 +64,6 @@ footer a:hover {
 }
 
 .header-img {
-  height: 50px;
-  padding-left: 24px;
   cursor: pointer;
 }
 

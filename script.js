@@ -195,6 +195,7 @@ let books = [
 
 
 
+
 // bücher anzeigen
 
 function render() {
@@ -205,10 +206,12 @@ function render() {
     let bookName = books[i].name;
     let bookPrice = books[i].price.toFixed(2);
     let bookLikes = books[i].likes;
-    let bookLiked = books[i].liked;
+    
     let bookAuthor = books[i].author;
     let bookPublishedYear = books[i].publishedYear;
     let bookGenre = books[i].genre;
+
+ 
 
     contentRef.innerHTML += `
     <div id="content" class="content">
@@ -224,7 +227,7 @@ function render() {
               .replace(".", ",")} EUR</span>
               <div class="like-box">
                 <b>${bookLikes}</b>
-                <img id="heart" class="heart" src="./assets/img/heart.png" alt="" >
+                <img id="heart" class="heart" src="" alt="" >
             </div>
             </div>
             <div class="information-box">
@@ -238,18 +241,21 @@ function render() {
             </form>
         </div>
     </div>`;
+
+    renderlike(i);
   }
+
 }
 
-function liked() {
+function renderlike(i) {
   let bookLiked = books[i].liked;
 
   if (bookLiked == true) {
       
-    document.getElementById('heart').src = './assets/img/heart.png';
+    document.getElementById('heart').src = './assets/img/heart_liked.png';
       
-  }
-  
+  } else document.getElementById('heart').src = './assets/img/heart.png';
+
 }
 
 // like function
