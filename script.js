@@ -57,5 +57,17 @@ function chageLikeStatus(index) {
 }
 
 // kommentar funktion
+function addComment(index) {
+  let inputMessageValue = document.getElementById('input_message' + index).value;
+
+  if (inputMessageValue.length != 0) {
+    books[index].comments.push({'name': "Ilja",'comment':inputMessageValue});
+    render();
+  } 
+}
+
+
+
+
 // extra challenge local storage
 // schicken code mit Ordnern, template funkctions usw

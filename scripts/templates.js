@@ -1,5 +1,5 @@
 function getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, index) {
-    return `
+  return `
         <div class="contant-card">
           <div class="top-box">
             <h1>${TITLE}</h1>
@@ -19,7 +19,12 @@ function getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, index) {
                 <span><h3>Genre:</h3>${GENRE}</span>
             </div>
             <h2>Kommentare</h2>
-            <div id="comment_container${index}" class="comment_container"></div>
+            <div id="comment_container${index}" class="comment_container">
+            </div>
+                <div class="comment-box">
+                  <input id="input_message${index}" class="message-box" type="text" placeholder="Kommentar eingeben..." required>
+                  <img class="send-img" src="./assets/img/send.png" onclick="addComment(${index})" alt="">
+    </div>
         </div>`;
 }
 
