@@ -154,6 +154,7 @@ h2 {
   padding-bottom: 16px;
 }
 
-form {
-  border-top: 1px solid #708fc8;
+.comment_container {
+  overflow: scroll;
+  max-height: 200px;
 }

@@ -1,6 +1,5 @@
-function getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, i) {
+function getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, index) {
     return `
-    <div id="content" class="content">
         <div class="contant-card">
           <div class="top-box">
             <h1>${TITLE}</h1>
@@ -11,7 +10,7 @@ function getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, i) {
             <span class="price-tag">${PRICE.toString().replace(".", ",")} EUR</span>
               <div class="like-box">
                 <b>${LIKES}</b>
-                HERZ
+                <img class="heart" id="like_status${index}" src="" alt="" onclick="chageLikeStatus(${index})">
             </div>
             </div>
             <div class="information-box">
@@ -19,12 +18,16 @@ function getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, i) {
                 <span><h3>Erscheinungsjahr:</h3> ${YEAR}</span>
                 <span><h3>Genre:</h3>${GENRE}</span>
             </div>
-            <div>
             <h2>Kommentare</h2>
-            <div id="comment_content${i}}">
-            
-            </div>
-            </div>
-        </div>
-    </div>`;
+            <div id="comment_container${index}" class="comment_container"></div>
+        </div>`;
+}
+
+function getCommentsTemplate(commentName, comment) {
+  return `
+          <div>
+            <p><b>[${commentName}]:</b></p>
+            <p>${comment}</p><br>
+          </div>    
+          `;
 }

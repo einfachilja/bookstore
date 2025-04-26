@@ -1,42 +1,61 @@
 // bücher anzeigen
-function render(){
+function render() {
   let contentRef = document.getElementById("content");
   contentRef.innerHTML = "";
 
-  for (let i = 0; i < books.length; i++) {
-    const TITLE = books[i].name;
-    const PRICE = books[i].price.toFixed(2);
-    const LIKES = books[i].likes;
-    const AUTHOR = books[i].author;
-    const YEAR = books[i].publishedYear;
-    const GENRE = books[i].genre;
+  for (let index = 0; index < books.length; index++) {
+    const TITLE = books[index].name;
+    const PRICE = books[index].price.toFixed(2);
+    const LIKES = books[index].likes;
+    const AUTHOR = books[index].author;
+    const YEAR = books[index].publishedYear;
+    const GENRE = books[index].genre;
 
-    contentRef.innerHTML += getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, i);
-    renderComments(i);
+    contentRef.innerHTML += getBookTemplate(TITLE, PRICE, LIKES, AUTHOR, YEAR, GENRE, index);
+    loadComments(index);
+    loadLikeStatus(index);
+  }
+}
+
+// kommentare anzeigen
+function loadComments(index) {
+  let commentsArr = books[index].comments;
+  let commentsContainerRef = document.getElementById('comment_container' + index);
+  commentsContainerRef.innerHTML = '';
+
+  for (let i = 0; i < commentsArr.length; i++) {
+    let commentName = books[index].comments[i].name;
+    let comment = books[index].comments[i].comment;
+
+
+    if (commentsContainerRef != null) {
+      commentsContainerRef.innerHTML += getCommentsTemplate(commentName, comment);
     }
   }
+}
 
+// like status laden
+function loadLikeStatus(index) {
+  let likeStatusRef = document.getElementById('like_status' + index)
 
-function renderComments(i) {
-  let myCommentsArr = books[i].comments;
-  let commentContentRef = document.getElementById('comment_content' + i);
-  commentContentRef = '';
+  if (books[index].liked == true) {
+    likeStatusRef.src = './assets/img/heart_liked.png';
+  } else likeStatusRef.src = './assets/img/heart_not_liked.png';
 
-  for (let c = 0; c < myCommentsArr.length; c++) {
-    let name = books[i].comments[c].name;
-    let comment = books[i].comments[c].comment;
-      
-    console.log(name);
-    
+}
 
-
-    }
+// // like function
+function chageLikeStatus(index) {
+  if (books[index].liked == true) {
+    books[index].liked = false;
+    books[index].likes--;
+  } else {
+    books[index].liked = true;
+    books[index].likes++;
   }
+  render();
+}
 
-
-
-
-// like function
 // kommentar funktion
 // extra challenge local storage
 // schicken code mit Ordnern, template funkctions usw
