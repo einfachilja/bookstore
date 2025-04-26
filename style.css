@@ -154,9 +154,12 @@ h2 {
   padding-bottom: 16px;
 }
 
-.comment_container {
+.comment-container {
+  display: flex;
+  flex-direction: column-reverse;
   overflow: scroll;
   max-height: 200px;
+
 }
 
 .comment-box {

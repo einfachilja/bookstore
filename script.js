@@ -1,3 +1,8 @@
+function init() {
+  getFromLocalStorage();
+  render();
+};
+
 // bücher anzeigen
 function render() {
   let contentRef = document.getElementById("content");
@@ -41,7 +46,6 @@ function loadLikeStatus(index) {
   if (books[index].liked == true) {
     likeStatusRef.src = './assets/img/heart_liked.png';
   } else likeStatusRef.src = './assets/img/heart_not_liked.png';
-
 }
 
 // // like function
@@ -53,6 +57,7 @@ function chageLikeStatus(index) {
     books[index].liked = true;
     books[index].likes++;
   }
+  saveToLocalStorage();
   render();
 }
 
@@ -61,13 +66,26 @@ function addComment(index) {
   let inputMessageValue = document.getElementById('input_message' + index).value;
 
   if (inputMessageValue.length != 0) {
-    books[index].comments.push({'name': "Ilja",'comment':inputMessageValue});
+    books[index].comments.push({ 'name': "Ilja", 'comment': inputMessageValue });
+    saveToLocalStorage();
     render();
-  } 
+  }
 }
 
+// in den local storage speichern
+function saveToLocalStorage() {
+  localStorage.setItem("books", JSON.stringify(books));
+}
 
+// aus local storage in ein neues Array laden und anschließend in Books (Object) übertragen
+function getFromLocalStorage() {
+  let localStorageBooks = JSON.parse(localStorage.getItem("books"));
 
+  if (localStorageBooks == null) {
+    books != localStorageBooks;
+  } else {
+    books = localStorageBooks;
+  }
 
-// extra challenge local storage
+}
 // schicken code mit Ordnern, template funkctions usw
